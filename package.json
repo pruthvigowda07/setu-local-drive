@@ -1,0 +1,28 @@
+{
+
+  "name": "setu-local-drive",
+
+  "version": "0.3.13",
+
+  "type": "module",
+
+  "description": "A lightweight local-first file inbox with approved guests and resumable transfers.",
+
+  "license": "MIT",
+
+  "engines": { "node": ">=24.0.0" },
+
+  "scripts": {
+
+    "start": "node --env-file-if-exists=.env server/main.js",
+
+    "start:lan": "node --env-file-if-exists=.env server/main.js --lan",
+
+    "test": "node --test --test-concurrency=1",
+
+    "check": "node --check server/main.js && node --check server/app.js && node --check public/app.js"
+
+  }
+
+}
+

@@ -1,0 +1,10 @@
+import { createApp } from '../server/app.js';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+const root=path.resolve('test-results');
+await fs.mkdir(root,{recursive:true});
+const app=await createApp({dataDir:path.join(root,`ui-data-${process.pid}`),inbox:path.join(root,`ui-inbox-${process.pid}`),clientId:''});
+const origin=await app.listen(4784);
+await fs.writeFile(path.join(root,'ui-access.json'),JSON.stringify({url:`${origin}/#key=${app.secrets.owner}`}));
+console.log('UI fixture ready on port 4784');
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,async()=>{await app.close();process.exit(0);});

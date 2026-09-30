@@ -1,0 +1,150 @@
+<!doctype html>
+
+<html lang="en" data-theme="dark">
+
+<head>
+
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="theme-color" content="#0a0807"><title>Setu · Private file network</title>
+
+  <link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css">
+
+  <script src="/theme.js"></script>
+
+  <script type="module" src="/app.js"></script>
+
+</head>
+
+<body>
+
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+
+  <main id="login" class="entrance" hidden>
+
+    <img src="/icon.svg" width="56" height="56" alt=""><p class="eyebrow">LOCAL FILES. SHARED ON YOUR TERMS.</p>
+
+    <h1>Setu.</h1><p>Open the private dashboard link printed in your terminal, or enter your owner key below.</p>
+
+    <form id="login-form"><label for="owner-key">Owner key</label><input id="owner-key" type="password" autocomplete="current-password" required><button class="primary">Unlock dashboard</button></form>
+
+    <small>Owner controls are available only on this PC.</small>
+
+  </main>
+
+  <div id="owner" class="shell" hidden>
+
+    <aside class="sidebar">
+
+      <a class="brand" href="/" aria-label="Setu home"><img src="/icon.svg" width="35" height="35" alt="">setu<span class="version">PRIVATE TRANSFER</span></a>
+
+        <p class="nav-label">SETU</p>
+
+      <nav aria-label="Main navigation">
+
+        <button data-page="inbox" class="nav active"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 14h4l2 3h4l2-3h4"/></svg></span>Transfer <b id="pending-count"></b></button>
+
+        <button data-workspace-action="receive" class="nav"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v12m-4-4 4 4 4-4M5 19h14"/></svg></span>Received</button>
+
+        <button data-workspace-action="approvals" class="nav"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Devices</button>
+
+        <button data-page="activity" class="nav"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>History</button>
+
+        <button data-page="settings" class="nav"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span>Settings</button>
+
+      </nav>
+
+      <div class="sidebar-foot"><span class="status-dot"></span> Running on your PC<strong id="device-name-label">Setu device</strong><p id="device-id-label">Device ID —</p><button id="lock" class="text-button">Lock dashboard</button></div>
+
+    </aside>
+
+    <div class="workspace">
+
+      <header class="topbar"><span>Setu transfer desk <span class="slash">/</span> <strong id="crumb">Transfer</strong></span><span class="local-badge">CONNECTED · LOCAL</span></header>
+
+      <main class="content">
+
+        <section class="page" id="page-inbox">
+
+          <div class="page-heading"><div><p class="eyebrow">PRIVATE. LOCAL. YOURS.</p><h1>Send or Receive <span class="accent">Files</span></h1><p>Files land on your PC — no account, no public cloud library.</p></div><button id="new-request-top" class="primary">Create upload link</button></div>
+
+          <div class="workspace-actions" aria-label="Transfer actions">
+            <button class="workspace-action" data-workspace-action="send-link" type="button"><span class="workspace-action-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></svg></span><span><strong>Send with Setu</strong><small>Paste a receiver link and request approval before sending.</small></span><span class="workspace-action-arrow">→</span></button>
+            <button class="workspace-action" data-workspace-action="receive" type="button"><span class="workspace-action-icon receive"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12m-4-4 4 4 4-4M5 19h14"/></svg></span><span><strong>Receive files</strong><small>Open a private link and approve each sender.</small></span><span class="workspace-action-arrow">→</span></button>
+          </div>
+
+          <div class="receiver-card">
+
+            <div class="receiver-title"><span id="receiver-light" class="receiver-light"></span><div><h2 id="receiver-title">Receiving is paused</h2><p id="receiver-sub">You decide when the door is open.</p></div></div>
+
+            <div class="receiver-controls"><label class="sr-only" for="receive-duration">Receiving duration</label><select id="receive-duration"><option value="30">For 30 minutes</option><option value="60">For 1 hour</option><option value="120" selected>For 2 hours</option><option value="240">For 4 hours</option><option value="480">For 8 hours</option><option value="720">For 12 hours</option><option value="1440">For 24 hours</option><option value="4320">For 3 days</option><option value="10080">For 7 days</option></select><button id="receive-toggle" class="primary">Enable receiving</button></div>
+
+          </div>
+
+          <div class="inbox-grid">
+
+            <div class="panel harbor-send-card"><div class="panel-heading"><h2>Setu transfer</h2><span class="muted">Links and approvals</span></div><div class="panel-note"><p>Use Send with Setu to paste another receiver link. Use Receive files to open your own door, create a link, and approve senders. Files are saved to this PC.</p></div></div>
+
+            <aside class="inbox-side"><div class="panel capacity-card"><div class="drive-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 15h.01"/></svg></div><p class="eyebrow">THIS PC</p><h2 id="free-space">—</h2><p>free space in your inbox drive</p><div class="path-line" id="inbox-path"></div><button data-go="settings" class="text-button">Change inbox folder</button></div><div class="note-card"><h3>Let someone drop files off.</h3><p>Create a link, approve their device, and receive files without sharing your library.</p><button data-workspace-action="approvals" class="text-button">Manage approvals and links</button></div></aside>
+
+          </div>
+
+          <div class="panel spaced" id="incoming-panel" hidden><div class="panel-heading"><h2>Transfers</h2><span id="incoming-total"></span></div><div id="incoming-list" class="queue"></div></div><div class="panel files-panel"><div class="panel-heading"><h2>Recent files <span id="file-count" class="count">0</span></h2><div class="panel-heading-actions"><button id="clean-empty" class="text-button">Clean empty folders</button><label class="sr-only" for="file-search">Search files</label><input id="file-search" class="search" type="search" placeholder="Find a file…"></div></div><div id="file-list"></div></div>
+
+          <div class="workspace-grid spaced"><div class="panel"><div class="panel-heading"><h2>Approvals</h2><span class="muted">Who can send to you</span></div><p class="panel-note">Approve a sender here before their link can receive files.</p><div id="guest-list"></div></div><div class="panel"><div class="panel-heading"><h2>Upload links</h2><button id="new-request" class="text-button">Create link</button></div><div id="invite-list"></div></div></div>
+
+        </section>
+
+        
+
+        <section class="page" id="page-activity" hidden><div class="page-heading"><div><p class="eyebrow">WHAT CAME AND WENT</p><h1>Activity.</h1><p>Uploads, approvals and receiving windows.</p></div><button id="clear-activity" class="icon-button bin-button page-action" aria-label="Clear activity" title="Clear activity"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div><div class="panel" id="activity-list"></div></section>
+
+        <section class="page" id="page-settings" hidden>
+
+          <div class="page-heading"><div><p class="eyebrow">MAKE YOURSELF AT HOME</p><h1>Settings.</h1><p>Choose your inbox and how people reach it.</p></div></div>
+
+          <div class="panel settings-panel appearance-panel"><div><h2>Appearance</h2><p>Choose how Setu looks on this device.</p></div><div><label for="appearance">Theme</label><select id="appearance"><option value="dark">Midnight orange</option><option value="light">Light ember</option><option value="system">Match Windows</option></select></div></div>
+
+          <div class="panel settings-panel device-panel spaced"><div class="device-panel-heading"><div><p class="eyebrow">DEVICE IDENTITY</p><h2>Identify this Setu device</h2><p>Give this computer a recognizable name when approving senders.</p></div><span class="device-orb" aria-hidden="true">ID</span></div><form id="device-form"><label for="device-name-input">Device name</label><div class="inline-form"><input id="device-name-input" maxlength="60" required placeholder="e.g. Pruthvi’s laptop"><button class="primary">Save name</button></div></form><div class="device-id-row"><div><span class="eyebrow">DEVICE ID</span><code id="device-id-value">—</code></div><button id="copy-device-id" type="button" class="secondary">Copy ID</button></div><small>This ID is generated locally and stays tied to this Setu installation. It is safe to use when confirming a sender.</small></div>
+
+          <div class="panel settings-panel spaced"><h2>Inbox folder</h2><p>Files are grouped by request and upload batch. Existing files are never overwritten.</p><form id="inbox-form"><label for="inbox-input">Absolute folder path</label><div class="inline-form"><input id="inbox-input" required><button class="primary">Save folder</button></div></form><small>Changing this does not move files already received. Pending uploads must be completed or cancelled first.</small></div>
+
+          <div class="panel settings-panel spaced"><h2>Local network</h2><p>For phones and computers on trusted home Wi-Fi, start Setu with <code>npm run start:lan</code>. Use a generated upload link on the address below.</p><div id="lan-addresses"></div><small>LAN transfers use HTTP. Use a tunnel for HTTPS on networks you do not trust. Owner controls remain local to this PC.</small></div>
+
+          <div class="panel settings-panel spaced"><h2>Temporary remote access</h2><p>Start a Cloudflare tunnel only when you need to receive from outside your home. It stops when receiving ends.</p><div class="inline-form"><button id="tunnel-toggle" class="primary">Start temporary tunnel</button><span id="tunnel-status" class="muted"></span></div><p id="tunnel-address"></p><small>Requires cloudflared installed on this PC. Temporary addresses change each session. No domain or router port forwarding required.</small></div>
+
+          <div class="notice spaced">Keep Setu’s data folder private. It contains the owner key and upload records. Setu currently runs as a local sender and receiver.</div>
+
+        </section>
+
+        <footer>Setu <span>·</span> Files stay close. Transfers stay yours.</footer>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <input type="file" id="files" multiple hidden>
+  <input type="file" id="folder" webkitdirectory multiple hidden>
+
+  <main id="guest" class="guest-shell" hidden>
+
+    <a class="brand" href="/receive"><img src="/icon.svg" width="36" height="36" alt="">setu</a>
+
+    <div class="guest-intro"><p class="eyebrow">YOU’RE INVITED TO DROP FILES OFF</p><h1>A place to send<br>your good stuff.</h1><p id="guest-description">Request access, then upload your files once the owner approves.</p></div>
+
+    <div class="panel guest-panel"><form id="guest-form"><label for="guest-name">Your name</label><input id="guest-name" autocomplete="name" placeholder="How should the owner recognize you?" required maxlength="80"><label for="guest-device-name">Your device name</label><input id="guest-device-name" autocomplete="off" placeholder="e.g. Akshaya’s iPhone" required maxlength="60"><small class="field-help">This helps the owner recognize the device requesting access.</small><button class="primary">Request upload access</button></form><div id="guest-wait" hidden><span class="pill">AWAITING APPROVAL</span><h2 id="guest-status-title">One quick check.</h2><p id="guest-status-copy">Share this pairing code with the owner so they can approve your device.</p><div id="pair-code" class="pair-code"></div><div id="guest-device-summary" class="device-summary"></div><button id="guest-reset" class="text-button">Use another upload link</button></div>
+
+    <div id="guest-upload" hidden><div class="panel-heading"><h2 id="guest-label">Your upload</h2><span class="pill good">Approved</span></div><p id="guest-destination"></p><div id="guest-drop" class="dropzone" tabindex="0" role="button" aria-label="Choose files"><div class="upload-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V5m-4 4 4-4 4 4M5 15v4h14v-4"/></svg></div><h3>Ready when you are.</h3><p>Drop your files or choose them below.</p><div class="drop-actions"><button id="guest-files" class="primary">Choose files</button><button id="guest-folder" class="secondary">Choose folder</button></div></div><div id="guest-queue" class="queue" aria-live="polite"></div><div id="guest-receipts"></div></div></div>
+
+    <p class="guest-foot">Keep this page open during uploads. If interrupted, reselect the same files in this browser to resume. You can upload here; you cannot browse the owner’s files.</p>
+
+  </main>
+
+  <dialog id="request-dialog"><form id="request-form"><div class="dialog-heading"><h2>Create an upload link</h2><button id="close-dialog" type="button" class="icon-button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p>Set an expiry and transfer limit. Files are saved to this PC.</p><label for="request-label">Request name</label><input id="request-label" placeholder="Photos from the weekend" required maxlength="80"><div class="form-grid"><div><label for="request-hours">Expires after</label><select id="request-hours"><option value="2">2 hours</option><option value="24" selected>24 hours</option><option value="168">7 days</option></select></div><div><label for="request-gb">Total limit (GB)</label><input id="request-gb" type="number" min="1" max="1024" value="10" required></div></div><label for="request-base">Share using</label><select id="request-base"></select><p class="dialog-note">Every sender must request approval. The PC must be awake, with receiving enabled.</p><button class="primary wide">Create link</button></form><div id="created-link" hidden><h2>Your invitation is ready.</h2><p>Send this link privately. The sender will appear in your approvals list.</p><label for="share-url">Upload link</label><input id="share-url" readonly><button id="copy-link" class="primary wide">Copy link</button><p class="footnote">This link is encrypted locally and remains available under Upload links. Localhost links work only on this PC.</p></div></dialog>
+
+<dialog id="delete-dialog" aria-labelledby="delete-title"><div class="dialog-heading"><h2 id="delete-title">Delete</h2><button id="delete-cancel" class="icon-button" aria-label="Cancel deletion"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p id="delete-name" class="delete-name"></p><button id="delete-record-only" class="delete-option"><strong id="delete-record-label">Remove record only</strong><small id="delete-record-note">Keep the saved file.</small></button><button id="delete-original" class="delete-option danger"><strong id="delete-file-label">Delete file and record</strong><small id="delete-file-note">Permanently delete the saved file from this PC.</small></button></dialog>
+<dialog id="send-link-dialog"><form id="send-link-form"><div class="dialog-heading"><h2>Send to a link</h2><button id="send-link-close" type="button" class="icon-button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p>Paste the receiver link supplied by the other Setu owner. The sender view will open so you can choose files.</p><label for="send-link-input">Receiver link</label><input id="send-link-input" type="url" placeholder="https://…/receive#invite=…" required><button class="primary wide">Open sender view</button></form></dialog>
+</body></html>
+

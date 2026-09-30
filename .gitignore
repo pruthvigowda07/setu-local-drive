@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.*
+!.env.example
+data/
+inbox/
+test-results/
+scripts/__pycache__/
+*.log
+build/
+dist/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.dpapi
+secrets.json
