@@ -8,10 +8,12 @@ The **Windows installer includes Node.js and cloudflared**. No separate runtime 
 
 Setu starts in dark mode. Change it under **Settings → Appearance** to Dark, Light, or Match Windows. Your choice is saved on each device, and the desktop window follows it.
 
-Run `dist/Setu Setup.exe`. It installs for your Windows account, adds Desktop and Start menu shortcuts, and registers Setu in Windows Installed apps. No administrator access, startup service, or automatic receiving is configured. This is an unsigned local build, not a commercially signed installer.
+Download the [Setu v0.3.13 Windows installer](https://github.com/pruthvigowda07/setu-local-drive/releases/tag/v0.3.13), or build it locally with the command below. It installs for your Windows account, adds Desktop and Start menu shortcuts, and registers Setu in Windows Installed apps. No administrator access, startup service, or automatic receiving is configured. This release is unsigned pending Foundation review.
 
 Setu is released under the MIT License. Release signing is manual and follows
-the policy in [CODE_SIGNING.md](CODE_SIGNING.md).
+the policy in [CODE_SIGNING.md](CODE_SIGNING.md). Free code signing provided by
+SignPath.io, certificate by SignPath Foundation, after acceptance into the
+Foundation program.
 
 - Double-click **Setu** to open its own dedicated Windows application window and automatically unlock the dashboard. No browser tab or owner-key entry is needed. It uses the Microsoft Edge WebView2 Runtime already present on this PC, rather than launching Edge or Chrome. Other PCs need the [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/).
 - The tray icon offers **Open dashboard**, **Pause receiving**, **Open app data folder**, and **Exit Setu**. Opening another shortcut brings the same window forward. Minimize the window to keep receiving; closing it exits Setu and stops the tunnel.
