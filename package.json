@@ -6,7 +6,7 @@
 
   "type": "module",
 
-  "description": "A lightweight local-first file inbox with approved guests and resumable transfers.",
+  "description": "Send and receive files over the internet with approved, resumable transfers and local-only storage.",
 
   "license": "MIT",
 

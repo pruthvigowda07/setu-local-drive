@@ -6,7 +6,7 @@
 
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="theme-color" content="#0a0807"><title>Setu · Private file network</title>
+  <meta name="theme-color" content="#0a0807"><meta name="description" content="Send and receive files over the internet with approved, resumable transfers and storage kept on your own PC."><title>Setu · Send files privately from your PC</title>
 
   <link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css">
 
@@ -60,7 +60,7 @@
 
     <div class="workspace">
 
-      <header class="topbar"><span>Setu transfer desk <span class="slash">/</span> <strong id="crumb">Transfer</strong></span><span class="local-badge">CONNECTED · LOCAL</span></header>
+      <header class="topbar"><span>Setu transfer desk <span class="slash">/</span> <strong id="crumb">Transfer</strong></span><span class="local-badge">STORAGE · THIS PC</span></header>
 
       <main class="content">
 
@@ -91,7 +91,7 @@
 
           <div class="panel spaced" id="incoming-panel" hidden><div class="panel-heading"><h2>Transfers</h2><span id="incoming-total"></span></div><div id="incoming-list" class="queue"></div></div><div class="panel files-panel"><div class="panel-heading"><h2>Recent files <span id="file-count" class="count">0</span></h2><div class="panel-heading-actions"><button id="clean-empty" class="text-button">Clean empty folders</button><label class="sr-only" for="file-search">Search files</label><input id="file-search" class="search" type="search" placeholder="Find a file…"></div></div><div id="file-list"></div></div>
 
-          <div class="workspace-grid spaced"><div class="panel"><div class="panel-heading"><h2>Approvals</h2><span class="muted">Who can send to you</span></div><p class="panel-note">Approve a sender here before their link can receive files.</p><div id="guest-list"></div></div><div class="panel"><div class="panel-heading"><h2>Upload links</h2><button id="new-request" class="text-button">Create link</button></div><div id="invite-list"></div></div></div>
+          <div class="workspace-grid spaced"><div class="panel"><div class="panel-heading"><h2>Approvals</h2><span class="muted">Who can send to you</span></div><p class="panel-note">Approve a sender here before their link can transfer files to this PC.</p><div id="guest-list"></div></div><div class="panel"><div class="panel-heading"><h2>Upload links</h2><button id="new-request" class="text-button">Create link</button></div><div id="invite-list"></div></div></div>
 
         </section>
 
@@ -132,7 +132,7 @@
 
     <a class="brand" href="/receive"><img src="/icon.svg" width="36" height="36" alt="">setu</a>
 
-    <div class="guest-intro"><p class="eyebrow">YOU’RE INVITED TO DROP FILES OFF</p><h1>A place to send<br>your good stuff.</h1><p id="guest-description">Request access, then upload your files once the owner approves.</p></div>
+    <div class="guest-intro"><p class="eyebrow">SEND FILES TO THIS PC</p><h1>A private place to send<br>your files.</h1><p id="guest-description">Request access, then transfer your files once the owner approves.</p></div>
 
     <div class="panel guest-panel"><form id="guest-form"><label for="guest-name">Your name</label><input id="guest-name" autocomplete="name" placeholder="How should the owner recognize you?" required maxlength="80"><label for="guest-device-name">Your device name</label><input id="guest-device-name" autocomplete="off" placeholder="e.g. Akshaya’s iPhone" required maxlength="60"><small class="field-help">This helps the owner recognize the device requesting access.</small><button class="primary">Request upload access</button></form><div id="guest-wait" hidden><span class="pill">AWAITING APPROVAL</span><h2 id="guest-status-title">One quick check.</h2><p id="guest-status-copy">Share this pairing code with the owner so they can approve your device.</p><div id="pair-code" class="pair-code"></div><div id="guest-device-summary" class="device-summary"></div><button id="guest-reset" class="text-button">Use another upload link</button></div>
 

@@ -1,8 +1,18 @@
 # Setu
 
-A small, local-first file inbox for Windows. Receive files and folders on your PC through approved, resumable upload links. The browser dashboard runs on your computer. No hosted website, domain, npm install, or database service is required.
+Send and receive files over the internet without cloud storage in the middle. Setu is a local-first Windows file transfer app: your PC provides the storage, you approve who can send, and completed files stay in your own inbox.
+
+Create an expiring receiver link, approve the sending device, and transfer files in resumable chunks. Setu does not upload files to Google Drive, a Setu cloud, or a hosted file library. For remote access, its optional temporary tunnel can relay network traffic to your PC, but it does not become a storage destination.
 
 The **Windows installer includes Node.js and cloudflared**. No separate runtime install is needed. Running from source requires Node.js 24 or newer. There are no production npm dependencies. Node's built-in SQLite API currently prints an experimental-feature notice; this is expected.
+
+## Why Setu
+
+- **Your PC is the storage.** Files land in an inbox folder you choose, not in a vendor-owned cloud drive.
+- **Approval before upload.** Senders identify their device and wait for your approval before they can transfer files.
+- **Resumable transfers.** Interrupted uploads continue from acknowledged chunks instead of starting over.
+- **Remote when you need it.** Use trusted Wi-Fi directly or create a temporary HTTPS link for an internet transfer.
+- **Open source and inspectable.** The project is MIT-licensed, with tests, CI, and a documented Windows build.
 
 ## Windows desktop installation
 
